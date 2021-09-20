@@ -9,20 +9,16 @@ import com.transportmanagmentsystem.repository.TripAcceptanceRepository;
 import com.transportmanagmentsystem.service.CustomUserDetailsService;
 import com.transportmanagmentsystem.service.RouteCheckDocumentService;
 import com.transportmanagmentsystem.service.TripAcceptanceService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class DefaultTripAcceptanceService implements TripAcceptanceService {
 
-    @Autowired
-    private TripAcceptanceRepository tripAcceptanceRepository;
-
-    @Autowired
-    private RouteCheckDocumentService routeCheckDocumentService;
-
-    @Autowired
-    private CustomUserDetailsService customUserDetailsService;
+    private final TripAcceptanceRepository tripAcceptanceRepository;
+    private final RouteCheckDocumentService routeCheckDocumentService;
+    private final CustomUserDetailsService customUserDetailsService;
 
     @Override
     public TripAcceptanceLog save(TripAcceptanceForm tripAcceptanceForm, TripAcceptanceLog.TripAcceptanceStatus tripAcceptanceStatus) {
@@ -33,7 +29,7 @@ public class DefaultTripAcceptanceService implements TripAcceptanceService {
 
         if (tripAcceptanceStatus.equals(TripAcceptanceLog.TripAcceptanceStatus.ACCEPTED)) {
             routeCheckDocument.setTripStatus(RouteCheckDocument.TripStatus.ACCEPTED_BY_DRIVER);
-        }else if (tripAcceptanceStatus.equals(TripAcceptanceLog.TripAcceptanceStatus.DECLINED)) {
+        } else if (tripAcceptanceStatus.equals(TripAcceptanceLog.TripAcceptanceStatus.DECLINED)) {
             routeCheckDocument.setTripStatus(RouteCheckDocument.TripStatus.REJECTED_BY_DRIVER);
         }
 

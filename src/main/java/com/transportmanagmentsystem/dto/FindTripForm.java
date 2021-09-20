@@ -21,5 +21,4 @@ public class FindTripForm {
     private String departureDateTime;
 
     private String tripsNotFound;
-
 }

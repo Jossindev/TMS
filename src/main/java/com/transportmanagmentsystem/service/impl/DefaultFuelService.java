@@ -4,17 +4,17 @@ import com.transportmanagmentsystem.dto.FuelDTO;
 import com.transportmanagmentsystem.entity.Fuel;
 import com.transportmanagmentsystem.repository.FuelRepository;
 import com.transportmanagmentsystem.service.FuelService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class DefaultFuelService implements FuelService {
 
-    @Autowired
-    private FuelRepository fuelRepository;
+    private final FuelRepository fuelRepository;
 
     @Override
     public Fuel save(FuelDTO fuelDTO) {

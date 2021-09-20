@@ -9,7 +9,7 @@ import com.transportmanagmentsystem.repository.BusRepository;
 import com.transportmanagmentsystem.repository.ComfortClassRepository;
 import com.transportmanagmentsystem.repository.FuelRepository;
 import com.transportmanagmentsystem.service.BusService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -17,16 +17,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class DefaultBusService implements BusService {
 
-    @Autowired
-    private BusRepository busRepository;
-
-    @Autowired
-    private FuelRepository fuelRepository;
-
-    @Autowired
-    private ComfortClassRepository comfortClassRepository;
+    private final BusRepository busRepository;
+    private final FuelRepository fuelRepository;
+    private final ComfortClassRepository comfortClassRepository;
 
     @Override
     public Optional<Bus> findById(Long id) {

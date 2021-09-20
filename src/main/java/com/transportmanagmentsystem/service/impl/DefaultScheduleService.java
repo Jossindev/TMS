@@ -7,7 +7,7 @@ import com.transportmanagmentsystem.exception.EntityNotFoundException;
 import com.transportmanagmentsystem.repository.ScheduleRepository;
 import com.transportmanagmentsystem.service.RouteService;
 import com.transportmanagmentsystem.service.ScheduleService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -16,13 +16,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class DefaultScheduleService implements ScheduleService {
 
-    @Autowired
-    private ScheduleRepository scheduleRepository;
-
-    @Autowired
-    private RouteService routeService;
+    private final ScheduleRepository scheduleRepository;
+    private final RouteService routeService;
 
     @Override
     public Schedule save(ScheduleDTO scheduleDTO) {

@@ -14,6 +14,5 @@ public class ComfortClassDTO {
 
     private BigDecimal price;
 
-
     private ComfortClass.ComfortClassType comfortClassType;
 }

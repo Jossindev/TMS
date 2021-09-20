@@ -4,17 +4,17 @@ import com.transportmanagmentsystem.dto.ComfortClassDTO;
 import com.transportmanagmentsystem.entity.ComfortClass;
 import com.transportmanagmentsystem.repository.ComfortClassRepository;
 import com.transportmanagmentsystem.service.ComfortClassService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class DefaultComfortClassService implements ComfortClassService {
 
-    @Autowired
-    private ComfortClassRepository comfortClassRepository;
+    private final ComfortClassRepository comfortClassRepository;
 
     @Override
     public ComfortClass save(ComfortClassDTO comfortClassDTO) {

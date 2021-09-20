@@ -5,7 +5,7 @@ import com.transportmanagmentsystem.entity.CustomUser;
 import com.transportmanagmentsystem.exception.UserAlreadyExistsException;
 import com.transportmanagmentsystem.repository.CustomUserRepository;
 import com.transportmanagmentsystem.service.CustomUserDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,13 +21,11 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
+@RequiredArgsConstructor
 public class DefaultCustomUserDetailsService implements CustomUserDetailsService, UserDetailsService {
 
-    @Autowired
-    private CustomUserRepository customUserRepository;
-
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    private final CustomUserRepository customUserRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public CustomUser save(CustomUserDTO customUserDTO) {

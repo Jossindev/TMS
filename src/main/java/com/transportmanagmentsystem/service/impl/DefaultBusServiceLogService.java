@@ -7,20 +7,18 @@ import com.transportmanagmentsystem.exception.EntityNotFoundException;
 import com.transportmanagmentsystem.repository.BusServiceLogRepository;
 import com.transportmanagmentsystem.service.BusService;
 import com.transportmanagmentsystem.service.BusServiceLogService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class DefaultBusServiceLogService implements BusServiceLogService {
 
-    @Autowired
-    private BusServiceLogRepository busServiceLogRepository;
-
-    @Autowired
-    private BusService busService;
+    private final BusServiceLogRepository busServiceLogRepository;
+    private final BusService busService;
 
     @Override
     public BusServiceLog save(BusServiceLogDTO busServiceLogDTO) {

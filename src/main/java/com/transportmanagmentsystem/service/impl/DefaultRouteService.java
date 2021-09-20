@@ -4,17 +4,17 @@ import com.transportmanagmentsystem.dto.RouteDTO;
 import com.transportmanagmentsystem.entity.Route;
 import com.transportmanagmentsystem.repository.RouteRepository;
 import com.transportmanagmentsystem.service.RouteService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class DefaultRouteService implements RouteService {
 
-    @Autowired
-    private RouteRepository routeRepository;
+    private final RouteRepository routeRepository;
 
     @Override
     public Route save(RouteDTO routeDTO) {

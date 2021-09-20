@@ -46,5 +46,4 @@ public class BusDTO {
 
     @NotNull(message = "{page.add-driver.form.error.empty}")
     private Long fuelId;
-
 }

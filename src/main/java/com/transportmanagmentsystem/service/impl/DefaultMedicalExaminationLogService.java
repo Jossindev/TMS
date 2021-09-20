@@ -7,20 +7,18 @@ import com.transportmanagmentsystem.exception.EntityNotFoundException;
 import com.transportmanagmentsystem.repository.MedicalExaminationRepository;
 import com.transportmanagmentsystem.service.CustomUserDetailsService;
 import com.transportmanagmentsystem.service.MedicalExaminationLogService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class DefaultMedicalExaminationLogService implements MedicalExaminationLogService {
 
-    @Autowired
-    private MedicalExaminationRepository medicalExaminationRepository;
-
-    @Autowired
-    private CustomUserDetailsService customUserDetailsService;
+    private final MedicalExaminationRepository medicalExaminationRepository;
+    private final CustomUserDetailsService customUserDetailsService;
 
     @Override
     public MedicalExaminationLog save(MedicalExaminationLogDTO medicalExaminationLogDTO) {

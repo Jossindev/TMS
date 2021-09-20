@@ -38,5 +38,4 @@ public class Bus {
 
     @ManyToOne
     private Fuel fuel;
-
 }

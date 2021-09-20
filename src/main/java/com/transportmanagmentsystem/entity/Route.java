@@ -29,5 +29,4 @@ public class Route {
     private String arrivalAddress;
 
     private Float distance;
-
 }
