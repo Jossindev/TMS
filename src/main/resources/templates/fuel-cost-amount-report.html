@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>
+        Звітність з кількості витраченого палива та її
+        загальної вартості за маршрутом
+    </title>
+</head>
+<style>
+
+    html {
+        font-family: "Times New Roman", sans-serif;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 20px;
+    }
+
+    th {
+        text-align: left;
+    }
+</style>
+<body>
+<div style="display: flex; justify-content: center">
+    <div>
+        <h2>Звітність з кількості витраченого палива та її загальної вартості за маршрутом</h2>
+    </div>
+</div>
+
+<div style="display: flex; align-items: center">
+    <p style="font-weight: bold">Дата з:</p>
+    <p style="margin-left: 20px; border-bottom: 0.5px solid black" th:text="${fuelAmountCostByRouteDTO.dateFrom}">
+        30-05-2021</p>
+    <p style="font-weight: bold; margin-left: 40px">Дата по:</p>
+    <p style="margin-left: 20px; border-bottom: 0.5px solid black" th:text="${fuelAmountCostByRouteDTO.dateTo}">АМ 9265
+        АК</p>
+</div>
+
+
+<div style="margin-top: 50px;">
+    <div style="display: flex; align-items: center">
+        <p style="font-weight: bold">Маршрут:</p>
+        <p style="margin-left: 20px; border-bottom: 0.5px solid black" th:text="${fuelAmountCostByRouteDTO.routeName}">
+            Кондратенко Владислав
+            Сергійович</p>
+    </div>
+    <div style="display: flex; align-items: center; margin: 0; padding: 0">
+        <p style="font-weight: bold">Номер:</p>
+        <p style="margin-left: 20px; border-bottom: 0.5px solid black"
+           th:text="${fuelAmountCostByRouteDTO.routeNumber}"></p>
+    </div>
+    <div style="display: flex; align-items: center; margin: 0; padding: 0">
+        <p style="font-weight: bold">Загальна відстань, км:</p>
+        <p style="margin-left: 20px; border-bottom: 0.5px solid black"
+           th:text="${fuelAmountCostByRouteDTO.distance}"></p>
+    </div>
+</div>
+
+
+<div style="margin-top: 50px;">
+    <div style="display: flex; align-items: center">
+        <p style="font-weight: bold">Витрачено бензину, л:</p>
+        <p style="margin-left: 20px; border-bottom: 0.5px solid black"
+           th:text="${fuelAmountCostByRouteDTO.benzineUsedAmount}">Volvo 2345</p>
+        <p style="font-weight: bold; margin-left: 40px">Заг. вартість витрач. бенз., грн:</p>
+        <p style="margin-left: 20px; border-bottom: 0.5px solid black"
+           th:text="${fuelAmountCostByRouteDTO.benzineUsedCost}">10000000</p>
+    </div>
+</div>
+
+<div>
+    <div style="display: flex; align-items: center">
+        <p style="font-weight: bold">Витрачено дизелю, л:</p>
+        <p style="margin-left: 20px; border-bottom: 0.5px solid black"
+           th:text="${fuelAmountCostByRouteDTO.dieselUsedAmount}">Volvo 2345</p>
+        <p style="font-weight: bold; margin-left: 40px">Заг. вартість витрач. дизелю., грн:</p>
+        <p style="margin-left: 20px; border-bottom: 0.5px solid black"
+           th:text="${fuelAmountCostByRouteDTO.dieselUsedCost}">10000000</p>
+    </div>
+</div>
+
+<div style="margin-top: 50px;">
+    <div style="display: flex; align-items: center; margin: 0; padding: 0">
+        <p style="font-weight: bold">Загально витрачено пального, л:</p>
+        <p style="margin-left: 20px; border-bottom: 0.5px solid black" th:text="${fuelAmountCostByRouteDTO.fuelUsedAmountTotal}"></p>
+    </div>
+    <div style="display: flex; align-items: center; margin: 0; padding: 0">
+        <p style="font-weight: bold">Заг. вартість витрач. пального., грн:</p>
+        <p style="margin-left: 20px; border-bottom: 0.5px solid black" th:text="${fuelAmountCostByRouteDTO.fuelUsedCostAmountTotal}"></p>
+    </div>
+</div>
+</body>
+</html>

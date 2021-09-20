@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Route list</title>
+</head>
+<style>
+
+    html{
+        font-family: "Times New Roman", sans-serif;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 20px;
+    }
+    th {
+        text-align: left;
+    }
+</style>
+<body>
+<div style="display: flex; justify-content: center">
+    <h2>Маршрутний лист №</h2>
+    <h2>Маршрутний лист № <span th:text="${routeCheckDocument.id}"></span></h2>
+</div>
+<div style="margin-top: 50px;">
+    <div style="display: flex; align-items: center">
+        <p style="font-weight: bold">Прізвище, ім'я, по-батькові:</p>
+        <p style="margin-left: 20px; border-bottom: 0.5px solid black" th:text="${routeCheckDocument.driver.fullName}">Кондратенко Владислав Сергійович</p>
+    </div>
+    <div style="display: flex; align-items: center; margin: 0; padding: 0" >
+        <p style="font-weight: bold">Посада:</p>
+        <p style="margin-left: 20px; border-bottom: 0.5px solid black">водій</p>
+    </div>
+    <div style="display: flex; align-items: center">
+        <p style="font-weight: bold">Автобуc:</p>
+        <p style="margin-left: 20px; border-bottom: 0.5px solid black" th:text="${routeCheckDocument.bus.name}">Volvo 2345</p>
+        <p style="font-weight: bold; margin-left: 40px">Реєстраційний номер:</p>
+        <p style="margin-left: 20px; border-bottom: 0.5px solid black" th:text="${routeCheckDocument.bus.registrationNumber}">АМ 9265 АК</p>
+    </div>
+    <table style="width:100%; margin-top: 50px">
+        <tr>
+            <th>Маршрут</th>
+            <th>Дата та час відправлення</th>
+            <th>Дата та час прибуття</th>
+            <th>Загальна кількість місць</th>
+            <th>Кількість зайнятих місць</th>
+        </tr>
+        <tr>
+            <td th:text="${routeCheckDocument.schedule.route.name}">Одеса - Київ</td>
+            <td th:text="${routeCheckDocument.schedule.departureDateTime}">04-05-2021 10:15</td>
+            <td th:text="${routeCheckDocument.schedule.departureDateTime}">04-05-2021 10:15</td>
+            <td th:text="${routeCheckDocument.bus.seatAmount}">56</td>
+            <td th:text="${routeCheckDocument.soldSeat}">50</td>
+        </tr>
+    </table>
+
+    <div style="margin-top: 25px;">
+        <div style="display: flex; align-items: flex-end">
+            <p style="font-weight: bold">Адреса відправлення:</p>
+            <p style="margin-left: 20px; border-bottom: 0.5px solid black; width: 50%"
+               th:text="${routeCheckDocument.schedule.route.departureAddress}"></p>
+        </div>
+        <div style="display: flex; align-items: flex-end">
+            <p style="font-weight: bold">Адреса прибуття:</p>
+            <p style="margin-left: 20px; border-bottom: 0.5px solid black; width: 50%"
+               th:text="${routeCheckDocument.schedule.route.arrivalAddress}"></p>
+        </div>
+    </div>
+
+    <table style="width:100%; margin-top: 25px">
+        <tr>
+            <th>Загальна відстань, км</th>
+            <th>Витрата палива л/100км</th>
+            <th>Кількість заправленого палива, л</th>
+            <th>Загальні витрати на паливо, грн</th>
+        </tr>
+        <tr>
+            <td th:text="${routeCheckDocument.schedule.route.distance}"></td>
+            <td th:text="${routeCheckDocument.bus.fuelConsumption}"></td>
+            <td th:text="${routeCheckDocument.filledFuel}"></td>
+            <td th:text="${routeCheckDocument.filledFuel} * ${routeCheckDocument.bus.fuel.price}"></td>
+        </tr>
+    </table>
+</div>
+
+<div style="margin-top: 50px;">
+    <div style="display: flex; align-items: flex-end">
+        <p style="font-weight: bold">Маршрутний лист здав:</p>
+        <p style="margin-left: 20px; border-bottom: 0.5px solid black; width: 50%"></p>
+    </div>
+    <div style="display: flex; align-items: flex-end">
+        <p style="font-weight: bold">Маршрутний лист прийняв:</p>
+        <p style="margin-left: 20px; border-bottom: 0.5px solid black; width: 50%"></p>
+    </div>
+</div>
+</body>
+</html>

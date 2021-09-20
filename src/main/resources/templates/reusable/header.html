@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      th:fragment="header" lang="en">
+
+<nav class="navbar navbar-expand-lg bg-primary">
+    <div class="container">
+        <div class="navbar-translate">
+            <a class="navbar-brand" href="/busparkemployeesworkcontrol/main">Bus Ti Buy</a>
+        </div>
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+
+<!--                <li class="nav-item" sec:authorize="isAuthenticated()">-->
+<!--                    <a href="/busparkemployeesworkcontrol/main" class="nav-link">-->
+<!--                        <i class="material-icons">search</i>-->
+<!--                        <span th:text="#{header.navigation.find-trips}"></span>-->
+<!--                    </a>-->
+<!--                </li>-->
+
+                <li class="dropdown nav-item" sec:authorize="hasAuthority('DRIVER')">
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"
+                       th:text="#{header.navigation.driver-panel}">Driver panel
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="/busparkemployeesworkcontrol/driverassignedtriplist" class="nav-link">
+                            <i class="material-icons">departure_board</i>
+                            <span th:text="#{header.navigation.assignedtriplist}"></span>
+                        </a>
+
+                        <a href="/busparkemployeesworkcontrol/driveracceptedtriplist" class="nav-link">
+                            <i class="material-icons">event_available</i>
+                            <span th:text="#{header.navigation.acceptedtriplist}"></span>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="dropdown nav-item" sec:authorize="hasAuthority('DISPATCHER')">
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"
+                       th:text="#{header.navigation.dispatcher-panel}">Dispatcher panel</a>
+                    <div class="dropdown-menu">
+                        <a href="/busparkemployeesworkcontrol/driverinfoperforming" class="dropdown-item"
+                           th:text="#{header.navigation.dispatcher-panel.driver-info-performing}">Driver info
+                            performing</a>
+                        <a href="/busparkemployeesworkcontrol/medicalexaminationinfoperforming" class="dropdown-item"
+                           th:text="#{header.navigation.dispatcher-panel.medical-examination-log}">Medical examination
+                            log performing</a>
+                        <a href="/busparkemployeesworkcontrol/businfoperforming" class="dropdown-item"
+                           th:text="#{header.navigation.dispatcher-panel.bus-info-performing}">Bus info performing</a>
+                        <a href="/busparkemployeesworkcontrol/busservicelogperforming" class="dropdown-item"
+                           th:text="#{header.navigation.dispatcher-panel.bus-service-log}">Bus service log
+                            performing</a>
+                        <a href="/busparkemployeesworkcontrol/routeinfoperforming" class="dropdown-item"
+                           th:text="#{header.navigation.dispatcher-panel.route-info-performing}">Route info
+                            performing</a>
+                        <a href="/busparkemployeesworkcontrol/scheduleinfoperforming" class="dropdown-item"
+                           th:text="#{header.navigation.dispatcher-panel.schedule-info-performing}">Schedule info
+                            performing</a>
+                        <a href="/busparkemployeesworkcontrol/tripinfopreforming" class="dropdown-item"
+                           th:text="#{header.navigation.dispatcher-panel.trip-info-performing}">Trip info performing</a>
+                        <a href="/busparkemployeesworkcontrol/tripinfopreforming/update" class="dropdown-item"
+                           th:text="#{header.navigation.dispatcher-panel.trip-info-performing.update}">Update trip
+                            info</a>
+                        <a href="/busparkemployeesworkcontrol/reports" class="dropdown-item"
+                           th:text="#{header.navigation.dispatcher-panel.reports}">Update trip
+                            info</a>
+                    </div>
+                </li>
+
+                <li class="dropdown nav-item">
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                        <i class="material-icons">language</i>
+                        <span th:text="#{header.navigation.language}"></span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item" th:href="@{''(lang=uk_UA)}"
+                           th:text="#{header.navigation.language.ukrainian}">
+                            Ukrainian
+                        </a>
+                        <a href="#" class="dropdown-item" th:href="@{''(lang=en)}"
+                           th:text="#{header.navigation.language.english}">English</a>
+                    </div>
+                </li>
+
+                <li class="nav-item" sec:authorize="!isAuthenticated()">
+                    <a href="/busparkemployeesworkcontrol/login" class="nav-link">
+                        <i class="material-icons">face</i>
+                        <span th:text="#{header.navigation.sign-in}"></span>
+                    </a>
+                </li>
+
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <a href="/busparkemployeesworkcontrol/logout" class="nav-link">
+                        <i class="material-icons">logout</i>
+                        <span th:text="#{header.navigation.logout}"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</html>

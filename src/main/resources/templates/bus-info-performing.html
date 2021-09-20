@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport'/>
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <!-- CSS Files -->
+    <link href="../assets/css/material-kit.css" th:href="@{/assets/css/material-kit.css}" rel="stylesheet" />
+
+    <!--    Javascript-->
+    <script src="../assets/js/core/jquery.min.js" th:src="@{/assets/js/core/jquery.min.js}" type="text/javascript"></script>
+    <script src="../assets/js/core/popper.min.js" th:src="@{/assets/js/core/popper.min.js}" type="text/javascript"></script>
+    <script src="../assets/js/core/bootstrap-material-design.min.js" th:src="@{/assets/js/core/bootstrap-material-design.min.js}" type="text/javascript"></script>
+    <script src="../assets/js/plugins/moment.min.js" th:src="@{/assets/js/plugins/moment.min.js}"></script>
+    <script src="../assets/js/plugins/bootstrap-datetimepicker.js" th:src="@{/assets/js/plugins/bootstrap-datetimepicker.js}" type="text/javascript"></script>
+    <script src="../assets/js/plugins/nouislider.min.js" th:src="@{/assets/js/plugins/nouislider.min.js}" type="text/javascript"></script>
+    <script src="../assets/js/material-kit.js?v=2.0.7" th:src="@{/assets/js/material-kit.js}" type="text/javascript"></script>
+    <title th:text="#{page.add-bus.title}">Bus info performing</title>
+</head>
+<div th:insert="reusable/header.html::header"></div>
+
+<body style="display: flex; flex-direction: column; min-height: 100vh">
+<div class="main" style="flex: 1">
+    <div class="container">
+        <div class="section section-contacts">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto">
+                    <h2 class="text-center title" th:text="#{page.add-bus.title}">Bus info performing</h2>
+                    <form action="/busparkemployeesworkcontrol/businfoperforming/save" method="post" th:object="${busDTO}">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating" th:text="#{page.add-bus.form.bus-name}">Bus name</label>
+                                    <input name="name" id="name" type="text" th:value="*{name}" class="form-control">
+                                    <div class="alert alert-warning" style="margin-top: 5px; padding: 10px"
+                                         th:each="error : ${#fields.errors('name')}">
+                                        <div class="container">
+                                            <div class="alert-icon">
+                                                <i class="material-icons">error_outline</i>
+                                            </div>
+                                            <b th:text="${error}">Bus name can't be empty</b>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating"  th:text="#{page.add-bus.form.registration-number}">Registration number</label>
+                                    <input name="registrationNumber" id="registrationNumber" type="text"
+                                           th:value="*{registrationNumber}" class="form-control">
+                                    <div class="alert alert-warning" style="margin-top: 5px; padding: 10px"
+                                         th:each="error : ${#fields.errors('registrationNumber')}">
+                                        <div class="container">
+                                            <div class="alert-icon">
+                                                <i class="material-icons">error_outline</i>
+                                            </div>
+                                            <b th:text="${error}">Registration number can't be empty</b>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating" th:text="#{page.add-bus.form.seat-amount}">Seat amount</label>
+                                    <input name="seatAmount" id="seatAmount" type="number" step="any"
+                                           th:value="*{seatAmount}" class="form-control">
+                                    <div class="alert alert-warning" style="margin-top: 5px; padding: 10px"
+                                         th:each="error : ${#fields.errors('seatAmount')}">
+                                        <div class="container">
+                                            <div class="alert-icon">
+                                                <i class="material-icons">error_outline</i>
+                                            </div>
+                                            <b th:text="${error}">Registration number can't be empty</b>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating"  th:text="#{page.add-bus.form.fuel-tank-volume}">Fuel tank volume</label>
+                                    <input name="fuelTankVolume" id="fuelTankVolume" type="number" step="any"
+                                           th:value="*{fuelTankVolume}" class="form-control">
+                                    <div class="alert alert-warning" style="margin-top: 5px; padding: 10px"
+                                         th:each="error : ${#fields.errors('fuelTankVolume')}">
+                                        <div class="container">
+                                            <div class="alert-icon">
+                                                <i class="material-icons">error_outline</i>
+                                            </div>
+                                            <b th:text="${error}">Registration number can't be empty</b>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating"  th:text="#{page.add-bus.form.fuel-consumption}">Fuel consumption</label>
+                                    <input name="fuelConsumption" id="fuelConsumption" type="number" step="any"
+                                           th:value="*{fuelConsumption}" class="form-control">
+                                    <div class="alert alert-warning" style="margin-top: 5px; padding: 10px"
+                                         th:each="error : ${#fields.errors('fuelConsumption')}">
+                                        <div class="container">
+                                            <div class="alert-icon">
+                                                <i class="material-icons">error_outline</i>
+                                            </div>
+                                            <b th:text="${error}">Registration number can't be empty</b>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating"  th:text="#{page.add-service-log-note.form.enter-mileage}">Mileage</label>
+                                    <input name="mileage" id="mileage" type="number" th:value="*{mileage}" step="any"
+                                           class="form-control">
+                                    <div class="alert alert-warning" style="margin-top: 5px; padding: 10px"
+                                         th:each="error : ${#fields.errors('mileage')}">
+                                        <div class="container">
+                                            <div class="alert-icon">
+                                                <i class="material-icons">error_outline</i>
+                                            </div>
+                                            <b th:text="${error}">Registration number can't be empty</b>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating"  th:text="#{page.add-bus.form.service-required-mileage}">Service required mileage</label>
+                                    <input name="serviceRequiredAfterMileage" id="serviceRequiredMileage" type="number"
+                                           step="any" th:value="*{serviceRequiredAfterMileage}" class="form-control">
+                                    <div class="alert alert-warning" style="margin-top: 5px; padding: 10px"
+                                         th:each="error : ${#fields.errors('serviceRequiredAfterMileage')}">
+                                        <div class="container">
+                                            <div class="alert-icon">
+                                                <i class="material-icons">error_outline</i>
+                                            </div>
+                                            <b th:text="${error}">Registration number can't be empty</b>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating"  th:text="#{page.add-bus.form.choose-fuel}">Choose fuel</label>
+                                    <select th:field="*{fuelId}" class="form-control selectpicker"
+                                            data-style="btn btn-link" id="fuelSelect">
+                                        <option th:each="fuel : ${fuelList}" th:value="${fuel.id}"
+                                                th:text="#{${fuel.getFuelType().getLocaleProperty()}}">
+                                        </option>
+                                    </select>
+                                    <div class="alert alert-warning" style="margin-top: 5px; padding: 10px"
+                                         th:each="error : ${#fields.errors('fuelId')}">
+                                        <div class="container">
+                                            <div class="alert-icon">
+                                                <i class="material-icons">error_outline</i>
+                                            </div>
+                                            <b th:text="${error}">Registration number can't be empty</b>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating"  th:text="#{page.add-bus.form.choose-comfort-class}">Choose comfort class</label>
+                                    <select th:field="*{comfortClassId}" class="form-control selectpicker"
+                                            data-style="btn btn-link" id="comfortClassSelect">
+                                        <option th:each="comfortClass : ${comfortClassList}" th:value="${comfortClass.id}"
+                                                th:text="#{${comfortClass.getComfortClassType().getLocaleProperty()}}">
+                                        </option>
+                                    </select>
+                                    <div class="alert alert-warning" style="margin-top: 5px; padding: 10px"
+                                         th:each="error : ${#fields.errors('comfortClassId')}">
+                                        <div class="container">
+                                            <div class="alert-icon">
+                                                <i class="material-icons">error_outline</i>
+                                            </div>
+                                            <b th:text="${error}">Registration number can't be empty</b>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 ml-auto mr-auto text-center">
+                                <button class="btn btn-primary btn-raised" th:text="#{page.add-driver.form.button.save}">
+                                    Save
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="row" th:if="${infoSaved}">
+                            <div class="col-md-6 ml-auto mr-auto text-center">
+                                <div class="alert alert-success" style="margin-top: 5px; padding: 10px">
+                                    <div class="container">
+                                        <div class="alert-icon">
+                                            <i class="material-icons">check</i>
+                                        </div>
+                                        <b th:text="#{page.add-driver.form.label.info-saved}">Driver info was saved</b>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<div th:insert="reusable/footer.html::footer"></div>
+</html>

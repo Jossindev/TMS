@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Test entity</title>
+    <script src="../assets/js/core/jquery.min.js" th:src="@{/assets/js/core/jquery.min.js}"
+            type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<h1>Test entity</h1>
+
+
+
+<form action="">
+
+
+    <div class="test_inner_entity" th:fragment="test_inner_entity">
+
+        <select id="testEntity" onchange="searchForEntity()">
+            <option th:each="testEntity : ${testEntityList}" th:value="${testEntity.id}"
+                    th:text="${testEntity.id} + ' ' + ${testEntity.name}"
+                    th:selected="${testEntity.id == selectedTestEntity.id}">
+            </option>
+        </select>
+
+        <select>
+            <option th:each="testInnerEntity : ${testInnerEntityList}" th:value="${testInnerEntity.id}"
+                    th:text="${testInnerEntity.id} + ' ' + ${testInnerEntity.name}"
+                    th:selected="${testInnerEntity.id == selectedTestEntity.testInnerEntity.id}">
+            </option>
+        </select>
+
+        <select>
+            <option th:each="testInnerEntity2 : ${testInnerEntity2List}" th:value="${testInnerEntity2.id}"
+                    th:text="${testInnerEntity2.id} + ' ' + ${testInnerEntity2.name}"
+                    th:selected="${testInnerEntity2.id == selectedTestEntity.testInnerEntity2.id}">
+            </option>
+        </select>
+
+        <input type="submit" value="Submit"/>
+    </div>
+
+
+
+    <script>
+        function searchForEntity () {
+            var testEntityId = document.getElementById("testEntity").value;
+            var url = '/busparkemployeesworkcontrol/testentity/' + testEntityId;
+            $('.test_inner_entity').load(url);
+        }
+    </script>
+</form>
+
+</body>
+</html>

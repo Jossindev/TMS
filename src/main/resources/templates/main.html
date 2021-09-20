@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Main</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <!-- Material Kit CSS -->
+    <link href="../assets/css/material-kit.css" th:href="@{/assets/css/material-kit.css}" rel="stylesheet"/>
+    <!--    Javascript-->
+    <script src="../assets/js/core/jquery.min.js" th:src="@{/assets/js/core/jquery.min.js}"
+            type="text/javascript"></script>
+    <script src="../assets/js/core/popper.min.js" th:src="@{/assets/js/core/popper.min.js}"
+            type="text/javascript"></script>
+    <script src="../assets/js/core/bootstrap-material-design.min.js"
+            th:src="@{/assets/js/core/bootstrap-material-design.min.js}" type="text/javascript"></script>
+    <script src="../assets/js/plugins/moment.min.js" th:src="@{/assets/js/plugins/moment.min.js}"></script>
+    <script src="../assets/js/plugins/bootstrap-datetimepicker.js"
+            th:src="@{/assets/js/plugins/bootstrap-datetimepicker.js}" type="text/javascript"></script>
+    <script src="../assets/js/plugins/nouislider.min.js" th:src="@{/assets/js/plugins/nouislider.min.js}"
+            type="text/javascript"></script>
+    <script src="../assets/js/material-kit.js?v=2.0.7" th:src="@{/assets/js/material-kit.js}"
+            type="text/javascript"></script>
+</head>
+<div th:insert="reusable/header.html::header"></div>
+<body>
+<div class="page-header header-filter" data-parallax="true"
+     style="background:url('https://wallpapercave.com/wp/wp7642340.png'); background-size: cover">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 ml-auto mr-auto">
+                <div class="brand text-center">
+<!--                    <h1 th:text="#{page.main.title.tickets-for-any-routes}">Bus tickets for any routes</h1>-->
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 ml-auto mr-auto">
+                                <div class="card card-login" style="min-height: 300px;">
+                                    <form class="form" method="post" action="/busparkemployeesworkcontrol/findtrip"
+                                          th:object="${findTripForm}">
+                                        <div class="card-header card-header-primary text-center">
+                                            <h4 class="card-title"
+                                                th:text="#{page.main.find-trip-form.title.find-trips-here}">
+                                                Find your trip here
+                                            </h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-map-o" aria-hidden="true"></i>
+                            </span>
+                                                </div>
+                                                <input th:value="*{departurePoint}" name="departurePoint"
+                                                       id="departurePoint" type="text"
+                                                       class="form-control"
+                                                       th:placeholder="#{page.main.find-trip-form.departure-point}">
+                                                <div class="alert alert-warning" style="margin-top: 5px; padding: 10px"
+                                                     th:each="error : ${#fields.errors('departurePoint')}">
+                                                    <div class="container">
+                                                        <div class="alert-icon">
+                                                            <i class="material-icons">error_outline</i>
+                                                        </div>
+                                                        <b th:text="${error}">Registration number can't be empty</b>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              <i class="fa fa-map-marker" style="font-size: 25px" aria-hidden="true"></i>
+                            </span>
+                                                </div>
+                                                <input th:value="*{arrivalPoint}" name="arrivalPoint" id="arrivalPoint"
+                                                       type="text"
+                                                       class="form-control"
+                                                       th:placeholder="#{page.main.find-trip-form.arrival-point}">
+                                                <div class="alert alert-warning" style="margin-top: 5px; padding: 10px"
+                                                     th:each="error : ${#fields.errors('arrivalPoint')}">
+                                                    <div class="container">
+                                                        <div class="alert-icon">
+                                                            <i class="material-icons">error_outline</i>
+                                                        </div>
+                                                        <b th:text="${error}">Registration number can't be empty</b>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </span>
+                                                </div>
+                                                <input name="departureDateTime" id="departureDateTime" type="text"
+                                                       class="form-control datetimepicker"
+                                                       th:value="*{departureDateTime}"
+                                                       th:placeholder="#{page.main.find-trip-form.departure-date-time}">
+                                                <div class="alert alert-warning" style="margin-top: 5px; padding: 10px"
+                                                     th:each="error : ${#fields.errors('departureDateTime')}">
+                                                    <div class="container">
+                                                        <div class="alert-icon">
+                                                            <i class="material-icons">error_outline</i>
+                                                        </div>
+                                                        <b th:text="${error}">Registration number can't be empty</b>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="alert alert-warning" style="margin-top: 5px; padding: 10px"
+                                             th:each="error : ${#fields.errors('tripsNotFound')}">
+                                            <div class="container">
+                                                <div class="alert-icon">
+                                                    <i class="material-icons">error_outline</i>
+                                                </div>
+                                                <b th:text="${error}">Registration number can't be empty</b>
+                                            </div>
+                                        </div>
+
+                                        <div class="footer text-center">
+                                            <button class="btn btn-primary btn-raised"
+                                                    th:text="#{page.main.find-trip-form.button.find-trips}">
+                                                Find trip
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main main-raised">
+    <div class="container">
+        <div class="section text-center">
+
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto">
+                    <h2 class="title" th:text="#{page.main.our-advantages.title}">Our advantages</h2>
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="info">
+                            <div class="icon icon-info">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                            </div>
+                            <h4 class="info-title" th:text="#{page.main.our-advantages.no-queues.title}">Without any
+                                queues</h4>
+                            <p th:text="#{page.main.our-advantages.no-queues.description}">Buy tickets online any time
+                                on our site</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="info">
+                            <div class="icon icon-success">
+                                <i class="fa fa-road" aria-hidden="true"></i>
+                            </div>
+                            <h4 class="info-title" th:text="#{page.main.our-advantages.more-than-1000-routes.title}">
+                                More than 1000 routes</h4>
+                            <p th:text="#{page.main.our-advantages.more-than-1000-routes.description}">Routes for any
+                                directions over Ukraine</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="info">
+                            <div class="icon icon-danger">
+                                <i class="fa fa-shield" aria-hidden="true"></i>
+                            </div>
+                            <h4 class="info-title" th:text="#{page.main.our-advantages.safe-payment.title}">
+                                Safe payment
+                            </h4>
+                            <p th:text="#{page.main.our-advantages.safe-payment.description}">PCI DSS standards for
+                                payment data safe </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row" th:if="${foundTripList != null && foundTripList.size() > 0}">
+                <div class="col-md-8 ml-auto mr-auto">
+                    <h2 class="title" th:text="#{page.main.found-trips.title}">Founded trips</h2>
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="row">
+
+                    <div class="col-md-4" th:each="trip : ${foundTripList}">
+                        <div class="card card-nav-tabs text-center">
+                            <div class="card-header card-header-primary">
+                                <h4 class="card-title" th:text="${trip.schedule.route.name}">Odessa - Kyiv</h4>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title"
+                                    th:text="#{page.main.found-trip-card.departure-date} + ' ' +
+                                    ${#temporals.format(trip.schedule.departureDateTime, 'dd.MM.yyyy')}">
+                                    Departure Date: 24.04.2021
+                                </h5>
+                                <h5 class="card-title"
+                                    th:text="#{page.main.found-trip-card.departure-time} + ' ' +
+                                    ${#temporals.format(trip.schedule.departureDateTime, 'HH:mm')}">
+                                    Departure time: 10:00
+                                </h5>
+                                <h5 class="card-title"
+                                    th:text="#{page.main.found-trip-card.arrival-date} + ' ' + ${#temporals.format(trip.schedule.arrivalDateTime, 'dd.MM.yyyy')}">
+                                    Arrival Date: 24.04.2021
+                                </h5>
+                                <h5 class="card-title"
+                                    th:text="#{page.main.found-trip-card.arrival-time} + ' ' + ${#temporals.format(trip.schedule.arrivalDateTime, 'HH:mm')}">
+                                    Arrival time: 17:00
+                                </h5>
+<!--                                <a href="#" class="btn btn-primary"-->
+<!--                                   th:text="#{page.main.found-trip-card.button.buy-ticket} + ' - ' +-->
+<!--                                   ${trip.bus.comfortClass.price} + ' ' + #{page.main.found-trip-card.button.currency}">Book-->
+<!--                                    ticket - 100 UAH-->
+<!--                                </a>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        materialKit.initFormExtendedDatetimepickers();
+    });
+</script>
+</body>
+<div th:insert="reusable/footer.html::footer"></div>
+</html>
