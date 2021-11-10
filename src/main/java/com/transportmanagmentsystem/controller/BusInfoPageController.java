@@ -23,12 +23,9 @@ import javax.validation.Valid;
 @RequestMapping(ControllerConstants.Mapping.BUS_PARK_EMPLOYEES_WORK_CONTROL)
 public class BusInfoPageController {
 
-    private static final String INFO_SAVED_ATTRIBUTE_KEY = "infoSaved";
-
     private static final String FUEL_LIST_MODEL_PARAM = "fuelList";
     private static final String COMFORT_CLASS_LIST_MODEL_PARAM = "comfortClassList";
     private static final String BUS_LIST = "busList";
-
 
     private final BusService busService;
     private final FuelService fuelService;
