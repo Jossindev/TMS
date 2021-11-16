@@ -11,7 +11,6 @@ import com.transportmanagmentsystem.entity.Route;
 import com.transportmanagmentsystem.service.CustomUserDetailsService;
 import com.transportmanagmentsystem.service.RouteService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
